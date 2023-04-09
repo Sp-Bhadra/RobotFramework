@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.0 on win32)" generated="20230320 22:42:28.173" rpa="false" schemaversion="3">
+<suite id="s1" name="testDemo1" source="F:\pythonRobot\tests\testDemo1.robot">
+<test id="s1-t1" name="Validate Unsucessfull login" line="6">
+<kw name="open the browser with mortgage url">
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<arg>Chrome</arg>
+<arg>executable_path=E:\\chromedriver.exe</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20230320 22:42:28.747" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20230320 22:42:28.737" endtime="20230320 22:42:34.060"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>https://rahulshettyacademy.com/loginpagePractise/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20230320 22:42:34.060" level="INFO">Opening url 'https://rahulshettyacademy.com/loginpagePractise/'</msg>
+<status status="PASS" starttime="20230320 22:42:34.060" endtime="20230320 22:42:37.006"/>
+</kw>
+<status status="PASS" starttime="20230320 22:42:28.737" endtime="20230320 22:42:37.006"/>
+</kw>
+<kw name="fill the login form">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>Id:username</arg>
+<arg>Situ</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230320 22:42:37.031" level="INFO">Typing text 'Situ' into text field 'Id:username'.</msg>
+<status status="PASS" starttime="20230320 22:42:37.031" endtime="20230320 22:42:37.943"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>Id:password</arg>
+<arg>1234</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20230320 22:42:37.943" level="INFO">Typing password into text field 'Id:password'.</msg>
+<msg timestamp="20230320 22:42:38.274" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20230320 22:42:38.641" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20230320 22:42:37.943" endtime="20230320 22:42:38.641"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>signInBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230320 22:42:38.644" level="INFO">Clicking button 'signInBtn'.</msg>
+<status status="PASS" starttime="20230320 22:42:38.644" endtime="20230320 22:42:39.139"/>
+</kw>
+<status status="PASS" starttime="20230320 22:42:37.031" endtime="20230320 22:42:39.139"/>
+</kw>
+<kw name="wait until it check and displays error message">
+<kw name="Wait Until Element Is Not Visible" library="SeleniumLibrary">
+<arg>css:.alert-danger</arg>
+<doc>Waits until the element ``locator`` is not visible.</doc>
+<status status="PASS" starttime="20230320 22:42:39.146" endtime="20230320 22:42:39.393"/>
+</kw>
+<status status="PASS" starttime="20230320 22:42:39.146" endtime="20230320 22:42:39.393"/>
+</kw>
+<kw name="verify the error message">
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${Result}</var>
+<arg>css:.alert-danger</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20230320 22:42:39.615" level="INFO">${Result} = </msg>
+<status status="PASS" starttime="20230320 22:42:39.423" endtime="20230320 22:42:39.615"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Result}</arg>
+<arg>Incorrect username/password.</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230320 22:42:39.630" level="FAIL"> != Incorrect username/password.</msg>
+<status status="FAIL" starttime="20230320 22:42:39.622" endtime="20230320 22:42:39.631"/>
+</kw>
+<status status="FAIL" starttime="20230320 22:42:39.423" endtime="20230320 22:42:39.631"/>
+</kw>
+<status status="FAIL" starttime="20230320 22:42:28.737" endtime="20230320 22:42:39.638"> != Incorrect username/password.</status>
+</test>
+<doc>To validate login form</doc>
+<status status="FAIL" starttime="20230320 22:42:28.188" endtime="20230320 22:42:39.659"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="testDemo1">testDemo1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
