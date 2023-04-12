@@ -2,6 +2,10 @@
 Documentation    To validate login form
 Library    SeleniumLibrary
 
+*** Variables ***
+${Error_Message_Login}    css:.alert-danger
+
+
 *** Test Cases ***
 Validate Unsucessfull login
     open the browser with mortgage url
@@ -18,8 +22,8 @@ fill the login form
     Input Password    Id:password   1234
     Click Button      signInBtn             #If we did not mention it as Id or xapth or css then robot treat it as ID
 wait until it check and displays error message
-    Wait Until Element Is Not Visible   css:.alert-danger
+    Wait Until Element Is Visible   ${Error_Message_Login}
 
 verify the error message
-    ${Result}=  Get Text    css:.alert-danger
+    ${Result}=  Get Text    ${Error_Message_Login}
     Should Be Equal As Strings    ${Result}    Incorrect username/password.     #builtin keyword
