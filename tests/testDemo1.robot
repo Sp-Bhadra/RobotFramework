@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation    To validate login form
 Library    SeleniumLibrary
-
+Test Teardown   Close Browser
 *** Variables ***
-${Error_Message_Login}    css:.alert-danger
+${Error_Message_Login}    css:.alert-danger  #way to create variable
 
 
 *** Test Cases ***
@@ -27,3 +27,4 @@ wait until it check and displays error message
 verify the error message
     ${Result}=  Get Text    ${Error_Message_Login}
     Should Be Equal As Strings    ${Result}    Incorrect username/password.     #builtin keyword
+    Element Text Should Be  ${Error_Message_Login}  Incorrect username/password.  #sort form for upper 2line
