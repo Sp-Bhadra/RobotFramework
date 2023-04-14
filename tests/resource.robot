@@ -5,3 +5,14 @@ Documentation  A resource file with reusable keywords and variables.
 ...  by seleniumLibrary
 Library    SeleniumLibrary
 
+*** Variables ***
+
+${User_Name}    Situ
+${Invalid_Password}     1234
+${url}  https://rahulshettyacademy.com/loginpagePractise/
+
+
+*** Keywords ***
+open the browser with mortgage url
+    Create Webdriver    Chrome  executable_path=E:\\chromedriver.exe
+    Go To    ${url}
