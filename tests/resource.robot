@@ -7,8 +7,10 @@ Library    SeleniumLibrary
 
 *** Variables ***
 
-${User_Name}    Situ
+${Valid_UserName}       rahulshettyacademy
+${Invalid_Username}     Situ
 ${Invalid_Password}     1234
+${Valid_Password}       learning
 ${url}  https://rahulshettyacademy.com/loginpagePractise/
 
 
