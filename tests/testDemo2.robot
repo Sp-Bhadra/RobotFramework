@@ -19,7 +19,7 @@ Validate Unsucessfull login
 Validate cards display in shopping page
     fill The Login Form    ${Valid_UserName}    ${Valid_Password}
     wait until element is located in page    ${Shop_page_load}
-
+    verify card titles in shop page
 
 *** Keywords ***
 fill the login form
@@ -37,3 +37,10 @@ verify the error message
     ${Result}=  Get Text    ${Error_Message_Login}
     Should Be Equal As Strings    ${Result}    Incorrect username/password.     #builtin keyword
     Element Text Should Be  ${Error_Message_Login}  Incorrect username/password.  #sort form for upper 2line
+
+verify card titles in shop page
+    @{expectedlist}=    Create List     iphone X    Samsung Note 8    Nokia Edge    Blackberry
+    ${elements}     Get Webelements     css:.card-title
+    FOR    ${element}   IN    @{elements}
+        Log    ${element.text}
+    END
