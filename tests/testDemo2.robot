@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    To validate login form
 Library    SeleniumLibrary
+Library    Collections
 Test Setup    open the browser with mortgage url
 Test Teardown   Close Browser
 Resource    resource.robot
@@ -41,6 +42,9 @@ verify the error message
 verify card titles in shop page
     @{expectedlist}=    Create List     iphone X    Samsung Note 8    Nokia Edge    Blackberry
     ${elements}     Get Webelements     css:.card-title
+    @{actualList}=      Create List
     FOR    ${element}   IN    @{elements}
         Log    ${element.text}
+        Append To List      ${actualList}       ${element}
     END
+    Lists Should Be Equal       ${actualList}       ${expectedList}
