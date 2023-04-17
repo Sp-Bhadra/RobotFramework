@@ -23,6 +23,10 @@ Validate cards display in shopping page
     verify card titles in shop page
     select the card  Blackberry
 
+Select the form and Navigate to child page
+    Fill the login details and select the user option       ${Valid_UserName}    ${Valid_Password}
+
+
 *** Keywords ***
 fill the login form
 
@@ -62,3 +66,12 @@ select the card
      END
     Click Button    xpath:(//*[@class='card-footer'])[${index}]/button
     Sleep	10 seconds
+
+Fill the login details and select the user option
+    [Arguments]    ${Username}  ${Password}    #generalize input value we can now use it for valid and invalid inputs
+    #buitin keyword
+    Input Text        Id:username   ${User_Name}  #selenium library
+    Input Password    Id:password   ${Password}
+    Click Element     css:input[value='user']
+    Click Button      okayBtn
+    Select From List By Label   css:select.form-control     Teacher
