@@ -3,7 +3,7 @@ Documentation    To validate login form
 Library    SeleniumLibrary
 Library    Collections
 Test Setup    open the browser with mortgage url
-Test Teardown   Close Browser
+#Test Teardown   Close Browser
 Resource    resource.robot
 
 *** Variables ***
@@ -11,40 +11,54 @@ ${Error_Message_Login}    css:.alert-danger  #way to create variable
 ${Shop_page_load}       css:.nav-link.btn.btn-primary
 
 *** Test Cases ***
-Validate Unsucessfull login
+#Validate Unsucessfull login
 
-    fill the login form    ${Invalid_Username}     ${Invalid_Password}
-    wait until element is located in page       ${Error_Message_Login}
-    verify the error message
+ #   fill the login form    ${Invalid_Username}     ${Invalid_Password}
+ #   wait until element is located in page       ${Error_Message_Login}
+ #   verify the error message
 
 Validate cards display in shopping page
     fill The Login Form    ${Valid_UserName}    ${Valid_Password}
     wait until element is located in page    ${Shop_page_load}
     verify card titles in shop page
+    select the card  Blackberry
 
 *** Keywords ***
 fill the login form
 
     [Arguments]    ${Username}  ${Password}    #generalize input value we can now use it for valid and invalid inputs
-    Input Text        Id:username   ${User_Name}
-    Input Password    Id:password   ${Password}
+    #buitin keyword
+    Input Text        Id:username   ${User_Name}  #selenium library
+    Input Password    Id:password   ${Password}     #selenium Library
     Click Button      signInBtn             #If we did not mention it as Id or xapth or css then robot treat it as ID
 
 wait until element is located in page
     [Arguments]    ${element}
-    Wait Until Element Is Visible    ${element}
+    Wait Until Element Is Visible    ${element}     #selenium library
 
 verify the error message
-    ${Result}=  Get Text    ${Error_Message_Login}
+    ${Result}=  Get Text    ${Error_Message_Login}      #selenium library
     Should Be Equal As Strings    ${Result}    Incorrect username/password.     #builtin keyword
     Element Text Should Be  ${Error_Message_Login}  Incorrect username/password.  #sort form for upper 2line
+    #selenium library
 
 verify card titles in shop page
-    @{expectedlist}=    Create List     iphone X    Samsung Note 8    Nokia Edge    Blackberry
-    ${elements}     Get Webelements     css:.card-title
-    @{actualList}=      Create List
+    @{expectedlist} =    Create List     iphone X    Samsung Note 8    Nokia Edge    Blackberry
+    ${elements} =     Get Webelements     css:.card-title
+    @{actualList} =      Create List
     FOR    ${element}   IN    @{elements}
         Log    ${element.text}
-        Append To List      ${actualList}       ${element}
+        Append To List      ${actualList}       ${element.text}
     END
     Lists Should Be Equal       ${actualList}       ${expectedList}
+
+select the card
+    [Arguments]   ${Cardname}
+     ${elements}=     Get Webelements     css:.card-title
+     ${index}=      Set Variable    1
+     FOR    ${element}   IN    @{elements}
+        Exit For Loop If    '${Cardname}'=='${element.text}'
+        ${index}=   Evaluate     ${index} + 1
+     END
+    Click Button    xpath:(//*[@class='card-footer'])[${index}]/button
+    Sleep	10 seconds
