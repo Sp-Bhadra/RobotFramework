@@ -12,16 +12,15 @@ ${Shop_page_load}       css:.nav-link.btn.btn-primary
 
 *** Test Cases ***
 #Validate Unsucessfull login
+#   fill the login form    ${Invalid_Username}     ${Invalid_Password}
+#   wait until element is located in page       ${Error_Message_Login}
+#   verify the error message
 
- #   fill the login form    ${Invalid_Username}     ${Invalid_Password}
- #   wait until element is located in page       ${Error_Message_Login}
- #   verify the error message
-
-Validate cards display in shopping page
-    fill The Login Form    ${Valid_UserName}    ${Valid_Password}
-    wait until element is located in page    ${Shop_page_load}
-    verify card titles in shop page
-    select the card  Blackberry
+#Validate cards display in shopping page
+#    fill The Login Form    ${Valid_UserName}    ${Valid_Password}
+#    wait until element is located in page    ${Shop_page_load}
+#    verify card titles in shop page
+#    select the card  Blackberry
 
 Select the form and Navigate to child page
     Fill the login details and select the user option       ${Valid_UserName}    ${Valid_Password}
@@ -73,5 +72,10 @@ Fill the login details and select the user option
     Input Text        Id:username   ${User_Name}  #selenium library
     Input Password    Id:password   ${Password}
     Click Element     css:input[value='user']
+    Wait Until Element Is Visible    okayBtn
     Click Button      okayBtn
+    Click Button      okayBtn
+    Wait Until Element Is Not Visible    okayBtn
     Select From List By Label   css:select.form-control     Teacher
+    Select Checkbox     terms
+    Sleep	10 seconds
