@@ -10,7 +10,7 @@ ${Error_Message_Login}    css:.alert-danger
 
 
 *** Test Cases ***
-Login with user ${username} and apssword ${password}        xyz     1234        #if .csv file not found then take xyz and 12345 as input
+Login with user ${username} and password ${password}        xyz     1234        #if .csv file not found then take xyz and 12345 as input
 
 *** Keywords ***
 Validate Unsucessfull login
