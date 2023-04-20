@@ -80,4 +80,4 @@ Fill the login details and select the user option
     Wait Until Element Is Not Visible    okayBtn
     Select From List By Label   css:select.form-control     Teacher
     Select Checkbox     terms
-    Sleep	10 seconds
+    Sleep	5 seconds
