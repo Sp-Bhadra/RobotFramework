@@ -10,6 +10,7 @@ Resource    resource.robot
 *** Variables ***
 ${Error_Message_Login}    css:.alert-danger  #way to create variable
 ${Shop_page_load}       css:.nav-link.btn.btn-primary
+${ListOfProducts}       Blackberry      Nokia Edge
 
 *** Test Cases ***
 Validate Unsucessfull login
@@ -22,7 +23,8 @@ Validate cards display in shopping page
     wait until element is located in page    ${Shop_page_load}
     verify card titles in shop page
     Hello World
-    select the card  Blackberry
+    Add Items To Card And Checkout  ${ListOfProducts}
+
 
 Select the form and Navigate to child page
     Fill the login details and select the user option       ${Valid_UserName}    ${Valid_Password}
